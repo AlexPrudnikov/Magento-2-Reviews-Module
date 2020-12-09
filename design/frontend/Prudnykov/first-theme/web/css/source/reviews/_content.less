@@ -1,0 +1,106 @@
+//
+// Common
+// _________________________________________________________
+@media-common: true;
+& when (@media-common = true) {
+	.columns .column.main {
+		width: 100%;
+	}
+    .fieldset {
+        margin: 0;
+    }
+    .input-text {
+        resize: none;
+    }
+    .actions-toolbar {
+        margin-bottom: 20px;
+    }
+
+    .pager {
+        display: flex;
+    }
+
+    .order-products-toolbar .toolbar-amount {
+        margin-right: 50px;
+    }
+    .order-products-toolbar .pages {
+        order: 1;
+        margin-left: auto;
+    }
+    .pages strong.page {
+        background: none;
+        width: 10px;
+        color: #6f6f6f;
+        border: 1px solid #e5e5e5;
+    }
+
+    .pages .action.next,
+    .pages .action.previous { 
+        position: relative;
+    }
+    .pages .action.next:before { 
+        position: absolute;
+        top: -10px;
+        left: 0;
+        content: "";
+        border: 6px solid;
+        border-color: #ff3e01 transparent transparent;
+        transform: rotate(-90deg);
+    }
+    .pages .action.previous:before {
+        position: absolute;
+        top: -10px;
+        left: 0;
+        content: "";
+        border: 6px solid;
+        border-color: #ff3e01 transparent transparent;
+        transform: rotate(90deg);   
+    }
+
+
+    .toolbar select {
+        background-color: #f0f0f0; 
+        box-shadow: none; 
+        border-radius: none; 
+    }
+    .pages .action {
+        border: none;
+    }
+
+    .review__wrapper {
+    	display: flex;
+    	align-items: center;
+    	margin-bottom: 35px;
+    	.review__info {
+    		margin-right: 50px;
+    		.review__name {
+    			margin: 0 0 5px;
+    		}
+    	}
+    	.review__content {
+    		background-color: #f3f3f3;
+    		border: 1px solid #f3f3f3;
+		    padding: 20px;
+		    position: relative;
+    		.reivew__intro {
+    			padding: 0;
+    			margin: 0;
+    		}
+    	}
+
+    	.review__content::after, .review__content::before {
+    		content: '';
+		    position: absolute;
+		    background: #f3f3f3;
+		    left: -11px; top: 3px;
+		    width: 20px; height: 20px;
+		    z-index: -1;
+		    transform: rotate(45deg); 
+    	}
+
+    	.review__content::before {
+    		z-index: 1; 
+    	}
+    }
+}
+

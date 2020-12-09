@@ -1,0 +1,283 @@
+<?xml version="1.0"?>
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>
+        <referenceBlock name="logo">
+            <arguments>
+                <argument name="logo_file" xsi:type="string">images/custom-design.svg</argument>
+                <argument name="logo_alt" xsi:type="string">Custom Design</argument>
+                <argument name="logo_width" xsi:type="number">108</argument>
+                <argument name="logo_height" xsi:type="number">50</argument>
+            </arguments>
+        </referenceBlock>
+
+        <!-- Установите шаблон, используемый блоком
+        https://devdocs.magento.com/guides/v2.4/frontend-dev-guide/layouts/xml-manage.html -->
+      <!--   Значения шаблона, указанные в качестве атрибутов, имеют более высокий приоритет при генерации макета, чем те, которые указаны при использовании <argument>. Это означает, что если для определенного блока шаблон установлен как атрибут, он переопределит значение, указанное в <argument>этом же блоке. -->
+     <!--  https://devdocs.magento.com/guides/v2.4/frontend-dev-guide/layouts/layout-practice.html -->
+       <!--  <referenceBlock name="content"> 
+            <block class="Magento\Framework\View\Element\Template"
+                   name="prudnykov.margo.content.container"
+                   template="Prudnykov_MargoTheme::content.phtml"/>  
+        </referenceBlock> -->
+
+       <!-- <referenceBlock name="advanced-search-link" remove="true" />
+        <referenceBlock name="form.subscribe" remove="true" />
+        <referenceBlock name="report.bugs" remove="true" />-->
+
+        <!-- Header -->
+     
+        <referenceContainer name="header.panel">
+            <container name="prudnykov_margoTheme_header_logo_container"
+                       label="Margo Header Logo"
+                       htmlTag="div"
+                       htmlClass="header-wrapper-logo"
+                       before="minicart"
+            />
+        </referenceContainer>
+        <referenceContainer name="prudnykov_margoTheme_header_logo_container">
+            <block class="Magento\Framework\View\Element\Template" name="headerlogo"
+                   template="Prudnykov_MargoTheme::header/logo/logo.phtml"
+            />
+        </referenceContainer>
+        <move element="top.search" destination="header.panel" before="prudnykov_margoTheme_header_logo_container" />
+        <move element="minicart" destination="header.panel" after="top.links"/>
+
+        <referenceContainer name="header.panel">
+                <block class="Magento\Framework\View\Element\Template" 
+                       name="top.search.mobile" as="topSearchMobile"
+                       template="Magento_Search::form.mini.mobile.phtml" />
+        </referenceContainer>
+
+
+
+
+
+        
+
+        <!-- Footer -->
+        <referenceBlock name="footer">
+            <container name="prudnykov_margoTheme_footer_links_container_1"
+                       label="Margo Footer Links"
+                       htmlTag="div"
+                       htmlClass="links"
+                       before="footer_links"
+             />
+        </referenceBlock>
+        <referenceBlock name="footer">
+            <container name="prudnykov_margoTheme_footer_links_container_2"
+                       label="Margo Footer Links"
+                       htmlTag="div"
+                       htmlClass="links"
+                       after="prudnykov_margoTheme_footer_links_container_1"
+            />
+        </referenceBlock>
+        <referenceBlock name="footer">
+            <container name="prudnykov_margoTheme_footer_links_container_3"
+                       label="Margo Footer Links"
+                       htmlTag="div"
+                       htmlClass="links"
+                       after="prudnykov_margoTheme_footer_links_container_2"
+            />
+        </referenceBlock>
+        <referenceBlock name="footer">
+            <container name="prudnykov_margoTheme_footer_links_container_4"
+                       label="Margo Footer Links"
+                       htmlTag="div"
+                       htmlClass="links end-child"
+                       after="prudnykov_margoTheme_footer_links_container_3"
+            />
+        </referenceBlock>
+
+        <move element="prudnykov_margoTheme_footer_links_container_4" destination="prudnykov_margoTheme_footer_links_container_3" />
+        <move element="copyright" destination="footer-container" />
+
+        <referenceContainer name="prudnykov_margoTheme_footer_links_container_1">
+            <block class="Magento\Framework\View\Element\Template" name="companyinfo"
+                   template="Prudnykov_MargoTheme::footer/links/column1.phtml" />
+            <block class="Magento\Framework\View\Element\Html\Links" name="margo_footer_links_column1" after="companyinfo">
+                <arguments>
+                    <argument name="css_class" xsi:type="string">footer links column1</argument>
+                </arguments>
+            </block>
+        </referenceContainer>
+        <referenceContainer name="prudnykov_margoTheme_footer_links_container_2">
+            <block class="Magento\Framework\View\Element\Template" name="help-center"
+                   template="Prudnykov_MargoTheme::footer/links/column2.phtml" />
+            <block class="Magento\Framework\View\Element\Html\Links" name="margo_footer_links_column2" after="help-center">
+                <arguments>
+                    <argument name="css_class" xsi:type="string">footer links column2</argument>
+                </arguments>
+            </block>
+        </referenceContainer>
+        <referenceContainer name="prudnykov_margoTheme_footer_links_container_3">
+            <block class="Magento\Framework\View\Element\Template" name="my-account"
+                   template="Prudnykov_MargoTheme::footer/links/column3.phtml" />
+            <block class="Magento\Framework\View\Element\Html\Links" name="margo_footer_links_column3" after="my-account">
+                <arguments>
+                    <argument name="css_class" xsi:type="string">footer links column3</argument>
+                </arguments>
+            </block>
+        </referenceContainer>
+        <referenceContainer name="prudnykov_margoTheme_footer_links_container_4">
+            <block class="Magento\Framework\View\Element\Template" name="follow-us"
+                   template="Prudnykov_MargoTheme::footer/links/column4.phtml" />
+            <block class="Magento\Framework\View\Element\Html\Links" name="margo_footer_links_column4" after="follow-us">
+                <arguments>
+                    <argument name="css_class" xsi:type="string">footer links column4</argument>
+                </arguments>
+            </block>
+        </referenceContainer>
+
+        <referenceBlock name="margo_footer_links_column1">
+             <block class="Magento\Framework\View\Element\Html\Link\Current" name="about-us">
+                <arguments>
+                    <argument name="label" xsi:type="string" translate="true">About Us</argument>
+                    <argument name="path" xsi:type="string">about-us</argument>
+                </arguments>
+             </block>
+             <block class="Magento\Framework\View\Element\Html\Link\Current" name="contact-us">
+                <arguments>
+                    <argument name="label" xsi:type="string" translate="true">Contact Us</argument>
+                    <argument name="path" xsi:type="string">contact-us</argument>
+                </arguments>
+             </block>
+            <block class="Magento\Framework\View\Element\Html\Link\Current" name="sell-to-cws">
+                <arguments>
+                    <argument name="label" xsi:type="string" translate="true">Sell to CWS</argument>
+                    <argument name="path" xsi:type="string">sell-to-cws</argument>
+                </arguments>
+            </block>
+            <block class="Magento\Framework\View\Element\Html\Link\Current" name="terms-conditions">
+                <arguments>
+                    <argument name="label" xsi:type="string" translate="true">Terms Conditions</argument>
+                    <argument name="path" xsi:type="string">terms-conditions</argument>
+                </arguments>
+            </block>
+            <block class="Magento\Framework\View\Element\Html\Link\Current" name="authenticity-guarantee">
+                <arguments>
+                    <argument name="label" xsi:type="string" translate="true">Authenticity Guarantee</argument>
+                    <argument name="path" xsi:type="string">authenticity-guarantee</argument>
+                </arguments>
+            </block>
+            <block class="Magento\Framework\View\Element\Html\Link\Current" name="privacy-policy">
+                <arguments>
+                    <argument name="label" xsi:type="string" translate="true">Privacy Policy</argument>
+                    <argument name="path" xsi:type="string">privacy-policy</argument>
+                </arguments>
+            </block>
+        </referenceBlock>
+
+        <referenceBlock name="margo_footer_links_column2">
+            <block class="Magento\Framework\View\Element\Html\Link\Current" name="shipping-policy">
+                <arguments>
+                    <argument name="label" xsi:type="string" translate="true">Shipping Policy</argument>
+                    <argument name="path" xsi:type="string">shipping-policy</argument>
+                </arguments>
+            </block>
+            <block class="Magento\Framework\View\Element\Html\Link\Current" name="payment-options">
+                <arguments>
+                    <argument name="label" xsi:type="string" translate="true">Payment Options</argument>
+                    <argument name="path" xsi:type="string">payment-options</argument>
+                </arguments>
+            </block>
+            <block class="Magento\Framework\View\Element\Html\Link\Current" name="order-information">
+                <arguments>
+                    <argument name="label" xsi:type="string" translate="true">Order Information</argument>
+                    <argument name="path" xsi:type="string">order-information</argument>
+                </arguments>
+            </block>
+            <block class="Magento\Framework\View\Element\Html\Link\Current" name="international-shipping">
+                <arguments>
+                    <argument name="label" xsi:type="string" translate="true">Internation Shipping</argument>
+                    <argument name="path" xsi:type="string">international-shipping</argument>
+                </arguments>
+            </block>
+            <block class="Magento\Framework\View\Element\Html\Link\Current" name="return-policy">
+                <arguments>
+                    <argument name="label" xsi:type="string" translate="true">Return Policy</argument>
+                    <argument name="path" xsi:type="string">return-policy</argument>
+                </arguments>
+            </block>
+            <block class="Magento\Framework\View\Element\Html\Link\Current" name="product-warranty">
+                <arguments>
+                    <argument name="label" xsi:type="string" translate="true">Product Warranty</argument>
+                    <argument name="path" xsi:type="string">product-warranty</argument>
+                </arguments>
+            </block>
+            <block class="Magento\Framework\View\Element\Html\Link\Current" name="repair-center">
+                <arguments>
+                    <argument name="label" xsi:type="string" translate="true">Repair Center</argument>
+                    <argument name="path" xsi:type="string">repair-center</argument>
+                </arguments>
+            </block>
+            <block class="Magento\Framework\View\Element\Html\Link\Current" name="faq">
+                <arguments>
+                    <argument name="label" xsi:type="string" translate="true">FAQ</argument>
+                    <argument name="path" xsi:type="string">faq</argument>
+                </arguments>
+            </block>
+        </referenceBlock>
+
+        <referenceBlock name="margo_footer_links_column3">
+            <block class="Magento\Framework\View\Element\Html\Link\Current" name="manage-your-account">
+                <arguments>
+                    <argument name="label" xsi:type="string" translate="true">Manage Your Account</argument>
+                    <argument name="path" xsi:type="string">manage-your-account</argument>
+                </arguments>
+            </block>
+            <block class="Magento\Framework\View\Element\Html\Link\Current" name="order-status">
+                <arguments>
+                    <argument name="label" xsi:type="string" translate="true">Order Status</argument>
+                    <argument name="path" xsi:type="string">Order Status</argument>
+                </arguments>
+            </block>
+        </referenceBlock>
+
+        <referenceBlock name="margo_footer_links_column4">
+            <block class="Magento\Framework\View\Element\Html\Link\Current" name="facebook">
+                <arguments>
+                    <argument name="path" xsi:type="string">facebook</argument>
+                     <argument name="attributes" xsi:type="array">
+                        <item name="class" xsi:type="string">facebook</item>
+                        <item name="href" xsi:type="string">https://facebook.com</item>
+                    </argument>
+                </arguments>
+            </block>
+            <block class="Magento\Framework\View\Element\Html\Link\Current" name="google">
+                <arguments>
+                    <argument name="path" xsi:type="string">google</argument>
+                     <argument name="attributes" xsi:type="array">
+                        <item name="class" xsi:type="string">google</item>
+                        <item name="href" xsi:type="string">https://google.com</item>
+                    </argument>
+                </arguments>
+            </block>
+            <block class="Magento\Framework\View\Element\Html\Link\Current" name="pinterest">
+                <arguments>
+                    <argument name="path" xsi:type="string">pinterest</argument>
+                     <argument name="attributes" xsi:type="array">
+                        <item name="class" xsi:type="string">pinterest</item>
+                        <item name="href" xsi:type="string">https://pinterest.com</item>
+                    </argument>
+                </arguments>
+            </block>
+            <block class="Magento\Framework\View\Element\Html\Link\Current" name="twitter">
+                <arguments>
+                    <argument name="path" xsi:type="string">twitter</argument>
+                     <argument name="attributes" xsi:type="array">
+                        <item name="class" xsi:type="string">twitter</item>
+                        <item name="href" xsi:type="string">https://twitter.com</item>
+                    </argument>
+                </arguments>
+            </block>
+        </referenceBlock>
+
+        <referenceBlock class="Magento\Theme\Block\Html\Footer">
+             
+        </referenceBlock>
+
+
+        <referenceBlock name="footer_links" remove="true" />
+       <!--  <referenceContainer name="logo" remove="true" /> -->
+    </body>
+</page>

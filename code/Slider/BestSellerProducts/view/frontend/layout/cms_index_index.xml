@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" layout="1column" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+	<body>
+		<referenceContainer name="content.bottom">
+			<container name="prudnykov_margoTheme_main_slider_container"
+                       label="Margo Main Slider"
+                       htmlTag="section"
+                       htmlClass="slider"
+             />
+		</referenceContainer>
+
+    	<referenceContainer name="prudnykov_margoTheme_main_slider_container">
+        	<block class="Slider\BestSellerProducts\Block\BestSellerProduct" name="best.seller.products" template="Slider_BestSellerProducts::bestsellerproducts.phtml"/>
+    	</referenceContainer>
+	</body>
+</page>

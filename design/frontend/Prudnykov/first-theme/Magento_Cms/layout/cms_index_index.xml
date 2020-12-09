@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>
+        <referenceContainer name="content.top">
+            <container name="prudnykov_margoTheme_main_banners_container"
+                       label="Margo Main Banners"
+                       htmlTag="section"
+                       htmlClass="banners"
+             />
+        </referenceContainer>
+
+        <referenceContainer name="prudnykov_margoTheme_main_banners_container">
+            <block class="Magento\Framework\View\Element\Template"
+                   name="prudnykov.margo.content.container"
+                   template="Prudnykov_MargoTheme::main/content.phtml"/> 
+        </referenceContainer>
+    </body>
+</page>

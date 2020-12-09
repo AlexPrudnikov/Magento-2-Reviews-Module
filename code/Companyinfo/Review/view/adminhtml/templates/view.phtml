@@ -1,0 +1,12 @@
+<?php $_review = $block->getReview(); ?>
+<div class="lable-wrapper orders-history" id="reviewList">
+	<div class="review__wrapper">
+		<div class="review__info">
+			<h2 class="review__name"><?php echo $_review->getData('firstname') ?></h2>
+			<p class="review__date"><?php echo $block->getConvertDate($_review->getData('create_at')) ?></p>
+		</div>
+		<div class="review__content">
+			<p class="reivew__intro"><?php echo $_review->getData('review') ?></p>
+		</div>
+	</div>
+</div>

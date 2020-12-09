@@ -1,0 +1,28 @@
+<?php $_reviews = $block->getAllReviews(); ?>
+<div class="lable-wrapper orders-history" id="reviewList">
+	<?php if($_reviews && count($_reviews )): ?>
+			<?php foreach($_reviews as $_review): ?>
+				<div class="review__wrapper">
+					<div class="review__info">
+						<h2 class="review__name"><?php echo $_review->getData('firstname') ?></h2>
+						<p class="review__date"><?php echo $block->getConvertDate($_review->getData('create_at')) ?></p>
+					</div>
+					<div class="review__content">
+						<p class="reivew__intro"><?php echo $_review->getData('review') ?></p>
+					</div>
+				</div>
+			<?php endforeach; ?>
+		 <?php if ($block->getPagerHtml()): ?>
+	        <div class="order-products-toolbar toolbar bottom"><?php echo $block->getPagerHtml(); ?></div>
+	    <?php endif ?>
+	<?php else: ?>
+	    <div class="message info empty"><span><?php echo __('Be the first to comment.'); ?></span></div>
+	<?php endif ?>
+</div>
+<script type="text/x-magento-init">
+   {
+       ".pager": {
+           "pagination": { "url": "<?php echo $this->getUrl('*/*/index'); ?>" }
+       }
+   }
+</script>

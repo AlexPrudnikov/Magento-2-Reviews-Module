@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<config	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
+	<menu>
+		<add	
+		    id="Companyinfo_Review::review"	
+			title="Store Reviews"	
+			module="Companyinfo_Review"	
+			sortOrder="30"	
+			parent="Magento_Backend::marketing"	
+			resource="Companyinfo_Review::review"
+		/>
+		<add	
+			id="Companyinfo_Review::index"	
+			title="Reviews"	
+			module="Companyinfo_Review"	
+			sortOrder="35"	
+			parent="Companyinfo_Review::review"	
+			action="review/review/index"	
+			resource="Companyinfo_Review::index"
+		/>
+	</menu>
+</config>

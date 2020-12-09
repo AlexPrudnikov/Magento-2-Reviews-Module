@@ -1,0 +1,10 @@
+<theme xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Config/etc/theme.xsd">
+    <title>First Theme</title>
+    <parent>Magento/luma</parent>
+
+    <!-- Эта секция для превью сайта -->
+    <!-- <media>
+        <preview_image></preview_image>
+    </media> -->
+
+</theme>

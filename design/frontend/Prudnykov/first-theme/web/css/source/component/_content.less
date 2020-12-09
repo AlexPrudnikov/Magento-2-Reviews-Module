@@ -1,0 +1,205 @@
+//
+// Common
+// _________________________________________________________
+@media-common: true;
+& when (@media-common = true) {
+	.content-banner {
+		margin-bottom: 45px;
+		&__image {
+			display: block;
+			height: 100%;
+			width: 100%;
+		}
+		&__wrapper-one {
+			display: flex;
+		}
+		&__wrapper-two {
+			display: flex;
+			flex-wrap: wrap;
+			justify-content: space-between;
+			width: 50%;
+		}
+		&__wrapper-three {
+			display: flex;
+			flex-grow: 1;
+		}
+		&__item1 {
+			margin-bottom: 1.6%;
+		}
+		&__item2 {
+			width: 50%;
+			margin-right: 1.6%;
+		}
+		&__item3 {
+			margin-bottom: 3.3%;
+		}
+		&__item4 {
+			margin-right: 3.3%;
+		}
+	}
+	
+		// Slide-title ------------------------------
+		.block-title {
+			font-family: 'Open Sans', sans-serif;
+			text-align: center;
+			line-height: 30px;
+			color: #5a6465;
+			h1 {
+				margin: 0;
+				font-size: 40px;
+				font-weight: 600;
+			}
+			p {
+				font-size: 18px;
+				font-weight: 400;
+			}
+		}
+		.widget .block-title {
+			margin: 0 0 17px;
+		}
+
+		// Slider ---------------------
+		.slider {
+			margin-bottom: 70px;
+		}
+		.slider-product-items {
+			.product-item {
+				margin-left: 0 !important;
+			}
+		}
+		.slick-slide {
+			margin-right: 20px;
+		}
+		.slick-list {
+			margin-right: -20px;
+		}
+		.product-slider-wrapper-btn {
+			position: absolute;
+			top: 50%;
+			transform: translateY(-130%);
+			width: 30px;
+			height: 70px;
+			background-color: transparent;
+			border: none;
+			box-shadow: none !important;
+			margin: 0;
+			padding: 0;
+			z-index: 5;
+		}
+		.product-slider-wrapper-btn:focus {
+			outline: -webkit-focus-ring-color auto 1px;
+		}
+		.product-slider-wrapper-btn:hover,
+		.product-slider-wrapper-btn:focus,
+		.product-slider-wrapper-btn:active {
+			background: initial;
+			border: none;
+		}
+		.product-slider-wrapper-btnprev {
+			left: -40px;
+		}
+		.product-slider-wrapper-btnnext {
+			right: -40px;
+		}
+		.product-slider-wrapper-btnprev-img {
+			content: url('../images/slider/arrow-left.png');
+		}
+		.product-slider-wrapper-btnnext-img {
+			content: url('../images/slider/arrow-right.png');
+		}
+		.slider-action-tocart {
+			width: 137px;
+			height: 40px;
+			background: #ffa800 !important;
+			border: 1px solid #ffa800 !important;
+			text-transform: uppercase;
+			transition: all 500ms ease;
+		}
+		.slider-action-tocart:hover {
+			background: #ff7e00 !important;
+			border: 1px solid #ff7e00 !important;
+		}
+		.slider-product-item-info:hover {
+			box-shadow:none !important;
+			border:none !important;
+			margin: 0 !important;
+			padding: 0 !important;
+			position: static !important;
+			z-index: 0 !important;
+		}
+		.slider-product-item-info .product-item-photo {
+			display: inline-block;
+		}
+		.slider-product-item-name {
+			margin: 0;
+			.product-item-link {
+				line-height: 30px;
+				font-weight: 600;
+				color: #4e4e4e;
+				text-decoration: none;
+			}
+
+			.slider-product-item-link:hover {
+				color: #184f94;
+				transition: all 300ms ease;
+				text-decoration: none;
+			}
+		}
+
+		.page-layout-1column .block.widget .products-grid .product-item {
+			max-width: 300px !important;
+		}
+		.product-item .action.tocompare,
+		.product-item .action.towishlist {
+			color: #999999;
+			transition: color 500ms ease;
+		}
+		.product-item .action.towishlist:hover {
+			color: #333;
+		}
+		.columns .column.main {
+			padding-bottom: 0;
+		}
+		.product-item .price-box {
+			margin: 0 0 22px;
+			.price {
+				font-size: 16px;
+    			font-weight: 600;
+			}
+		}
+		.products-grid .product-item {
+			margin-bottom: 0;
+		}
+		.products-grid .product-item-actions {
+			margin: -10px 0 0;
+		}
+
+		.product-item-actions .actions-primary {
+			margin-right: 13px;
+			& + .actions-secondary > .action {
+				width: 16px;
+				margin-right: 13px;
+			}
+		}
+
+	}
+
+	@media(max-width: 870px) {
+		.bannerItem2 {
+			&__btn {
+				font-size: 14px;
+				width: 145px;
+				height: 44px;
+			}
+		}
+	}
+
+	@media(max-width: 770px) {
+		.bannerItem2 {
+			&__btn {
+				font-size: 12px;	
+				width: 129px;
+				height: 39px;
+			}	
+		}
+	}

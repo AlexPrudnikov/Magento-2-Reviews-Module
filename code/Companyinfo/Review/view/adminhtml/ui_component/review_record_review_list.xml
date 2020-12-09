@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<listing xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Ui/etc/ui_configuration.xsd">
+    <argument name="data" xsi:type="array">
+        <item name="js_config" xsi:type="array">
+            <item name="provider" xsi:type="string">review_record_review_list.review_record_review_list_data_source</item>
+            <item name="deps" xsi:type="string">review_record_review_list.review_record_review_list_data_source</item>
+        </item>
+        <item name="spinner" xsi:type="string">review_records_columns</item>
+    </argument>
+    <dataSource name="review_record_review_list_data_source">
+        <argument name="dataProvider" xsi:type="configurableObject">
+            <argument name="class" xsi:type="string">Magento\Framework\View\Element\UiComponent\DataProvider\DataProvider</argument>
+            <argument name="name" xsi:type="string">review_record_review_list_data_source</argument>
+            <argument name="primaryFieldName" xsi:type="string">id</argument>
+            <argument name="requestFieldName" xsi:type="string">id</argument>
+            <argument name="primaryFieldName" xsi:type="string">customer_id</argument>
+            <argument name="requestFieldName" xsi:type="string">customer_id</argument>
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="update_url" xsi:type="url" path="mui/index/render"/>
+                    <item name="storageConfig" xsi:type="array">
+                        <item name="indexField" xsi:type="string">id</item>
+                    </item>   
+                </item>
+            </argument>
+        </argument>
+        <argument name="data" xsi:type="array">
+            <item name="js_config" xsi:type="array">
+                <item name="component" xsi:type="string">Magento_Ui/js/grid/provider</item>
+            </item>
+        </argument>
+    </dataSource>
+    <container name="listing_top">
+        <argument name="data" xsi:type="array">
+            <item name="config" xsi:type="array">
+                <item name="template" xsi:type="string">ui/grid/toolbar</item>
+                <item name="stickyTmpl" xsi:type="string">ui/grid/sticky/toolbar</item>
+            </item>
+        </argument>
+        <bookmark name="bookmarks"/>
+        <columnsControls name="columns_controls"/>
+        <filters name="listing_filters" /> <!-- new -->
+        <massaction name="listing_massaction">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="selectProvider" xsi:type="string">review_record_review_list.review_record_review_list.review_records_columns.ids</item>
+                    <item name="component" xsi:type="string">Magento_Ui/js/grid/tree-massactions</item>
+                    <item name="indexField" xsi:type="string">id</item>
+                </item>
+            </argument>
+            <!-- Mass actions which you want to add in your grid-->
+            <action name="delete">
+                <argument name="data" xsi:type="array">
+                    <item name="config" xsi:type="array">
+                        <item name="type" xsi:type="string">delete</item>
+                        <item name="label" xsi:type="string" translate="true">Delete</item>
+                        <item name="url" xsi:type="url" path="review/review/massdelete"/>
+                        <item name="confirm" xsi:type="array">
+                            <item name="title" xsi:type="string" translate="true">Delete</item>
+                            <item name="message" xsi:type="string" translate="true">Do you want to delete selected row record?</item>
+                        </item>
+                    </item>
+                </argument>
+            </action>
+        </massaction>
+        <paging name="listing_paging">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="storageConfig" xsi:type="array">
+                        <item name="provider" xsi:type="string">review_record_review_list.review_record_review_list.listing_top.bookmarks</item>
+                        <item name="namespace" xsi:type="string">current.paging</item>
+                    </item>
+                    <item name="selectProvider" xsi:type="string">review_record_review_list.review_record_review_list.review_records_columns.ids</item>
+                </item>
+            </argument>
+        </paging>
+    </container>
+    <columns name="review_records_columns">
+        <selectionsColumn name="ids">
+           <argument name="data" xsi:type="array">
+               <item name="config" xsi:type="array">
+                   <item name="resizeEnabled" xsi:type="boolean">false</item>
+                   <item name="resizeDefaultWidth" xsi:type="string">55</item>
+                   <item name="indexField" xsi:type="string">id</item>
+                   <item name="sortable" xsi:type="boolean">true</item>
+                   <item name="sortOrder" xsi:type="number">1</item>
+               </item>
+           </argument>
+       </selectionsColumn>
+       <column name="id">
+            <argument name="data" xsi:type="array">
+                <item name="js_config" xsi:type="array">
+                    <item name="component" xsi:type="string">Magento_Ui/js/grid/columns/column</item>
+                </item>
+                <item name="config" xsi:type="array">
+                    <item name="filter" xsi:type="string">textRange</item>
+                    <item name="label" xsi:type="string" translate="true">Id</item>
+                    <item name="sortable" xsi:type="boolean">true</item>
+                    <item name="sortOrder" xsi:type="number">2</item>
+                </item>
+            </argument>
+        </column>
+        <column name="customer_id">
+            <argument name="data" xsi:type="array">
+                <item name="js_config" xsi:type="array">
+                    <item name="component" xsi:type="string">Magento_Ui/js/grid/columns/column</item>
+                </item>
+                <item name="config" xsi:type="array">
+                    <item name="filter" xsi:type="string">textRange</item>
+                    <item name="label" xsi:type="string" translate="true">Customer Id</item>
+                    <item name="sortable" xsi:type="boolean">true</item>
+                    <item name="sortOrder" xsi:type="number">3</item>                 
+                </item>
+            </argument>
+        </column>
+       <column name="review" >
+           <argument name="data" xsi:type="array">
+               <item name="config" xsi:type="array">
+                   <item name="filter" xsi:type="string">text</item>
+                   <item name="label" xsi:type="string" translate="true">Review</item>
+                   <item name="sortable" xsi:type="boolean">true</item>
+                   <item name="sortOrder" xsi:type="number">4</item>
+               </item>
+           </argument>
+       </column>
+       <column name="create_at" class="Magento\Ui\Component\Listing\Columns\Date" >
+           <argument name="data" xsi:type="array">
+               <item name="config" xsi:type="array">
+                   <item name="filter" xsi:type="string">dateRange</item>
+                   <item name="component" xsi:type="string">Magento_Ui/js/grid/columns/date</item>
+                   <item name="dataType" xsi:type="string">date</item>
+                   <item name="label" xsi:type="string" translate="true">Created At</item>
+                   <item name="sortable" xsi:type="boolean">true</item>
+                   <item name="sortOrder" xsi:type="number">5</item>
+               </item>
+           </argument>
+       </column>
+       <column name="update_at" class="Magento\Ui\Component\Listing\Columns\Date" >
+           <argument name="data" xsi:type="array">
+               <item name="config" xsi:type="array">
+                   <item name="filter" xsi:type="string">dateRange</item>
+                   <item name="component" xsi:type="string">Magento_Ui/js/grid/columns/date</item>
+                   <item name="dataType" xsi:type="string">date</item>
+                   <item name="label" xsi:type="string" translate="true">Update At</item>
+                   <item name="sortable" xsi:type="boolean">true</item>
+                   <item name="sortOrder" xsi:type="number">6</item>
+               </item>
+           </argument>
+       </column>
+      <!-- Add Action with each row of grid and for this we will create a class Action -->
+       <actionsColumn name="actions" class="Companyinfo\Review\Ui\Component\Listing\Grid\Column\Action">
+           <argument name="data" xsi:type="array">
+               <item name="config" xsi:type="array">
+                   <item name="resizeEnabled" xsi:type="boolean">false</item>
+                   <item name="resizeDefaultWidth" xsi:type="string">107</item>
+                   <item name="indexField" xsi:type="string">id</item>
+                   <item name="indexField" xsi:type="string">customer_id</item>
+               </item>
+           </argument>
+       </actionsColumn>
+    </columns>
+</listing>

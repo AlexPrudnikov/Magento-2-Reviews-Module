@@ -1,0 +1,13 @@
+<?xml	version="1.0"?>
+<page	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+<body>
+	<referenceBlock	name="margo_footer_links_column1">
+	    <block class="Magento\Framework\View\Element\Html\Link\Current"	name="reviews">
+			<arguments>
+				<argument name="label" translate="true" xsi:type="string">Reviews</argument>
+				<argument name="path" xsi:type="string">review/index/index</argument>
+			</arguments>
+		</block>
+	</referenceBlock>
+</body>
+</page>

@@ -1,0 +1,34 @@
+<?xml version="1.0"?>
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" layout="2columns-left" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+<head>
+	<title>Reviews</title>
+</head>
+<body>
+	<referenceBlock name="wishlist_sidebar" remove="true" />
+	<referenceBlock name="sale.reorder.sidebar" remove="true"/>
+	<referenceBlock name="catalog.compare.sidebar" remove="true" />
+
+	<referenceContainer name="content">
+		<container name="companyinfo_review_reviews_content_container"
+                       label="Companyinfo Review Reviews"
+                       htmlTag="div"
+                       htmlClass="reviews-wrapper"
+        />
+	</referenceContainer>
+	<referenceContainer name="content.bottom">
+		<container name="companyinfo_review_form_content_container"
+                       label="Companyinfo Review Form"
+                       htmlTag="div"
+                       htmlClass="form-wrapper"
+        />
+	</referenceContainer>
+
+	<referenceContainer name="companyinfo_review_reviews_content_container">
+		<block class="Companyinfo\Review\Block\Review" name="new_reviews" template="Companyinfo_Review::review.phtml" cacheable="false" />
+	</referenceContainer>
+	<referenceContainer name="companyinfo_review_form_content_container">
+		<block class="Companyinfo\Review\Block\ReviewForm" name="reviewForm" template="Companyinfo_Review::reviewForm.phtml" after="new_reviews" />
+	</referenceContainer>		
+	
+</body>
+</page>
