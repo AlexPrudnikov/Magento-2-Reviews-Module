@@ -9,6 +9,13 @@
 	<referenceBlock name="catalog.compare.sidebar" remove="true" />
 
 	<referenceContainer name="content">
+		<container name="companyinfo_review_label_content_container" 
+						label="Companyinfo Review Label"
+						htmlTag="div"
+						htmlClass="label__wrapper"
+		/>
+	</referenceContainer>
+	<referenceContainer name="content">
 		<container name="companyinfo_review_reviews_content_container"
                        label="Companyinfo Review Reviews"
                        htmlTag="div"
@@ -23,6 +30,14 @@
         />
 	</referenceContainer>
 
+	<referenceContainer name="companyinfo_review_label_content_container">
+		<block name="label_reviews" template="Companyinfo_Review::labelReviews.phtml" />
+		<!-- <block class="Magento\Checkout\Block\Cart\ValidationMessages" name="checkout.cart.validationmessages" after="label_reviews" cacheable="false"/> -->
+	</referenceContainer>
+
+	<referenceContainer name="page.messages">
+    	<block class="Magento\Checkout\Block\Cart\ValidationMessages" name="checkout.cart.validationmessages"/>
+	</referenceContainer>
 	<referenceContainer name="companyinfo_review_reviews_content_container">
 		<block class="Companyinfo\Review\Block\Review" name="new_reviews" template="Companyinfo_Review::review.phtml" cacheable="false" />
 	</referenceContainer>

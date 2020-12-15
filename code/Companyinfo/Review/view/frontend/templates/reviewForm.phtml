@@ -1,5 +1,11 @@
-<div class="col-md-8">
-	<?php if($block->isLoggedIn()): ?>
+<div class="col-md-8 modal__wrapper">
+   <div class="modal__body">
+  <?php if($block->isLoggedIn()): ?>
+      <div class="modal-body__item">
+          <p>
+            <button class="modal-body__item-btn-form hide-modal" type="submit"><span class="visually-hidden"><?= $block->escapeHtmlAttr(__('Close')) ?><span></button>
+          </p>
+      </div>
        <form name="addData" method="post" id="form_id" class="form"
               action="<?php echo $this->getFormAction(); ?>"
               data-hasrequired="<?= $block->escapeHtmlAttr(__('* Required Fields')) ?>"
@@ -11,7 +17,7 @@
                             <label class="label" for="title"><span><?= $block->escapeHtmlAttr(__('Review')) ?></span></label>
                             <div class="control">
                                 <textarea name="review" id="review" title="Review" value="" class="input-text"
-                                      	  rows="10" cols="45" type="text" data-validate="{required:true}"></textarea>
+                                          rows="10" cols="100" type="text" data-validate="{required:true}"></textarea>
                             </div>
                         </div>
                     </div>
@@ -25,8 +31,14 @@
             </div>
         </form>
     <?php else: ?>
+      <div class="modal-body__item">
+          <p>
+            <button class="modal-body__item-btn-message hide-modal" type="submit"><span class="visually-hidden"><?= $block->escapeHtmlAttr(__('Close')) ?><span></button>
+          </p>
+      </div>
       <div class="message info empty"><span><?php echo __('In order to leave a review, you need to register on the site or log in.'); ?></span></div>
     <?php endif ?>
+   </div>
 </div>
 <script type="text/x-magento-init">
    {
@@ -34,6 +46,10 @@
            "formAjax": { "id": "<?php echo $block->getCustomerId(); ?>",
            				       "url": "<?php echo $this->getUrl('*/*/index'); ?>"
            			      }
-       }
+       },
+
+       ".hide-modal": {
+            "hideModal" : { "event": "click" }
+     }
    }
 </script>

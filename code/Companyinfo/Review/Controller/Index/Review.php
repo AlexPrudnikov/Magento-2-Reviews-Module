@@ -30,6 +30,5 @@ class Review extends \Magento\Framework\App\Action\Action
 		$modelReview->setCustomer_id($id);
 		$modelReview->setReview($review);
 		$modelReview->save();
-		$this->getResponse()->setBody('success');
 	}
 }

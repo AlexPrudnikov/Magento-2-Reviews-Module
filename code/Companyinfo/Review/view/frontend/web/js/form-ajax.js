@@ -1,4 +1,8 @@
-define(['jquery'], function($){
+define(['jquery',
+        'Magento_Customer/js/customer-data',
+        'Magento_Ui/js/view/messages',
+        'mage/translate'
+       ], function($, customerData){
        return function(data) {
           $("#form_id").submit(function(){
           var value = $("textarea[name='review']").val();
@@ -11,8 +15,8 @@ define(['jquery'], function($){
               showLoader: true,
               cache: false,
               success: function(response){
-                  console.log(response);
                   updateTable(data.url);
+                  successMessage();
                  }
              });
           }
@@ -31,8 +35,21 @@ define(['jquery'], function($){
       success: function(data) {
         $("#reviewList").html(data);
         $('.pager').first().trigger('contentUpdated');
+        $('.modal__wrapper').hide();
+        $('#form_id')[0].reset();
       }
     });
   }
 
+  function successMessage () {
+    setTimeout(function (){
+      var msg = $.mage.__('Review has been added.');
+        customerData.set('messages', {
+          messages: [{
+            type: 'success',
+            text:msg
+          }]
+      });    
+    }, 4000);
+  }
 });

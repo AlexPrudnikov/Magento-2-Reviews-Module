@@ -4,10 +4,6 @@ namespace Companyinfo\Review\Block\Adminhtml\Review\Edit;
 
 use Magento\Framework\View\Element\UiComponent\Control\ButtonProviderInterface;
 
-/**
- * Class SaveButton
- * @package Geekhub\Lesson9\Block\Adminhtml\Block\Edit
- */
 class SaveButton implements ButtonProviderInterface
 {
     /**
