@@ -12,10 +12,4 @@ var config = {
 		showModal: 'Companyinfo_Review/js/show-modal',
 		hideModal: 'Companyinfo_Review/js/hide-modal'
 	}
-
-/*	mixins: {
-		'Magento_Theme/js/view/messages': {
-			'Companyinfo_Review/js/view/messages-mixin':true
-		}
-	}*/
 };
