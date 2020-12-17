@@ -7,18 +7,27 @@ class Save extends \Magento\Backend\App\Action
     /**
      * @var \Companyinfo\Review\Model\ReviewFactory
      */
-    var $reviewFactory;
+    protected $reviewFactory;
+
+    /**
+     * @var \Magento\Framework\Stdlib\DateTime
+     */
+    protected $dateTime;
+
  
     /**
      * @param \Magento\Backend\App\Action\Context $context
      * @param \Companyinfo\Review\Model\ReviewFactory $reviewFactory
+     * @param \Magento\Framework\Stdlib\DateTime $dateTime
      */
     public function __construct(
         \Magento\Backend\App\Action\Context $context,
-        \Companyinfo\Review\Model\ReviewFactory $reviewFactory
+        \Companyinfo\Review\Model\ReviewFactory $reviewFactory,
+        \Magento\Framework\Stdlib\DateTime $dateTime
     ) {
         parent::__construct($context);
         $this->reviewFactory = $reviewFactory;
+        $this->dateTime = $dateTime;
     }
  
     /**
@@ -38,6 +47,8 @@ class Save extends \Magento\Backend\App\Action
             if (isset($data['id'])) {
                 $rowData->setId($data['id']);
                 $rowData->setCustomerId($data['customer_id']);
+                $rowData->setReview($data['review']);
+                $rowData->setUpdateAt($this->dateTime->formatDate(true));
             }
             $rowData->save();
             $this->messageManager->addSuccess(__('Row data has been successfully saved.'));
