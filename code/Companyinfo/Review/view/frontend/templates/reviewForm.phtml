@@ -1,9 +1,9 @@
 <div class="col-md-8 modal__wrapper">
    <div class="modal__body">
   <?php if($block->isLoggedIn()): ?>
-      <div class="modal-body__item">
+      <div class="modal-body__header">
           <p>
-            <button class="modal-body__item-btn-form hide-modal" type="submit"><span class="visually-hidden"><?= $block->escapeHtmlAttr(__('Close')) ?><span></button>
+            <button class="modal-body__header-btn-form hide-modal" type="submit"><span class="visually-hidden"><?= $block->escapeHtmlAttr(__('Close')) ?><span></button>
           </p>
       </div>
        <form name="addData" method="post" id="form_id" class="form"
@@ -14,7 +14,6 @@
                 <fieldset class="fieldset row">
                     <div class="fields col-md-6">
                         <div class="field name required">
-                            <label class="label" for="title"><span><?= $block->escapeHtmlAttr(__('Review')) ?></span></label>
                             <div class="control">
                                 <textarea name="review" id="review" title="Review" value="" class="input-text"
                                           rows="10" cols="100" type="text" data-validate="{required:true}"></textarea>
@@ -31,12 +30,12 @@
             </div>
         </form>
     <?php else: ?>
-      <div class="modal-body__item">
+      <div class="modal-body__header">
           <p>
-            <button class="modal-body__item-btn-message hide-modal" type="submit"><span class="visually-hidden"><?= $block->escapeHtmlAttr(__('Close')) ?><span></button>
+            <button class="modal-body__header-btn-message hide-modal" type="submit"><span class="visually-hidden"><?= $block->escapeHtmlAttr(__('Close')) ?><span></button>
           </p>
       </div>
-      <div class="message info empty"><span><?php echo __('In order to leave a review, you need to register on the site or log in.'); ?></span></div>
+      <div class="modal-body__footer"><span><?php echo __('In order to leave a review, you need to register on the site or log in.'); ?></span></div>
     <?php endif ?>
    </div>
 </div>

@@ -32,6 +32,7 @@
 
 	<referenceContainer name="companyinfo_review_label_content_container">
 		<block name="label_reviews" template="Companyinfo_Review::labelReviews.phtml" />
+		<!-- <block class="Magento\Checkout\Block\Cart\ValidationMessages" name="checkout.cart.validationmessages" after="label_reviews" cacheable="false"/> -->
 	</referenceContainer>
 
 	<referenceContainer name="page.messages">
