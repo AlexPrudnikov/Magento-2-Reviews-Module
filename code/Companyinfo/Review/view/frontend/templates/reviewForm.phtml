@@ -6,7 +6,7 @@
             <button class="modal-body__header-btn-form hide-modal" type="submit"><span class="visually-hidden"><?= $block->escapeHtmlAttr(__('Close')) ?><span></button>
           </p>
       </div>
-       <form name="addData" method="post" id="form_id" class="form"
+       <form name="addData" method="post" id="form_id" class="form-review"
               action="<?php echo $this->getFormAction(); ?>"
               data-hasrequired="<?= $block->escapeHtmlAttr(__('* Required Fields')) ?>"
               data-mage-init='{"validation":{}}'>
@@ -22,9 +22,9 @@
                     </div>
                 </fieldset>
             </fieldset>
-            <div class="actions-toolbar">
+            <div class="actions-toolbar-review">
                 <div class="primary">
-                    <button type="submit" class="action submit primary" title="Submit"><span><?= $block->
+                    <button type="submit" class="action submit primary review" title="Submit"><span><?= $block->
                         escapeHtmlAttr(__('Submit')) ?></span></button>
                 </div>
             </div>

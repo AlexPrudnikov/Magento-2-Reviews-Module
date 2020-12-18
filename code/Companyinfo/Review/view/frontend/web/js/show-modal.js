@@ -3,6 +3,7 @@ define(['jquery'], function($){
 	    $('#show-modal').on(data.event, function(event) {
 		    event.preventDefault();
 		    $('.modal__wrapper').show();
+		    $('.input-text').focus();
     	});
     }
 });
