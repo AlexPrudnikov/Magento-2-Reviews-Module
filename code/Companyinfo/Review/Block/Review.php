@@ -55,7 +55,7 @@ class Review extends Template
         $this->pageConfig->getTitle()->set(__('Reviews'));
         if ($this->getAllReviews()) {
             $pager = $this->getLayout()->createBlock(
-                'Magento\Theme\Block\Html\Pager',
+                'Companyinfo\Review\Block\Pager',
                 'custom.history.pager'
             )->setAvailableLimit([5 => 5, 10 => 10, 15 => 15, 20 => 20])
                 ->setShowPerPage(true)->setCollection(

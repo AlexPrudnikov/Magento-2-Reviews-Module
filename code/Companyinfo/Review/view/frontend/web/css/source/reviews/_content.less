@@ -33,8 +33,13 @@
         box-shadow: none !important;
     }
 
-    .pager {
+    .pager-module {
         display: flex;
+        align-items: center;
+        width: 99.3%;
+        border-top: solid 1px #cecece;
+        border-bottom: solid 1px #cecece;
+        padding: 10px 0 10px 0;
     }
 
     .form-review {
@@ -44,22 +49,22 @@
     .order-products-toolbar .toolbar-amount {
         margin-right: 50px;
     }
-    .order-products-toolbar .pages {
+    .order-products-toolbar .pages-module {
         order: 1;
         margin-left: auto;
     }
-    .pages strong.page {
+    .pages-module strong.page {
         color: #6f6f6f;
         background: none;
         padding: 0 7px;
         border: 1px solid #e5e5e5;
     }
 
-    .pages .action.next,
-    .pages .action.previous { 
+    .pages-module .action.next,
+    .pages-module .action.previous { 
         position: relative;
     }
-    .pages .action.next:before { 
+    .pages-module .action.next:before { 
         position: absolute;
         top: -10px;
         left: 0;
@@ -68,7 +73,7 @@
         border-color: #ff3e01 transparent transparent;
         transform: rotate(-90deg);
     }
-    .pages .action.previous:before {
+    .pages-module .action.previous:before {
         position: absolute;
         top: -10px;
         left: 0;
@@ -77,6 +82,11 @@
         border-color: #ff3e01 transparent transparent;
         transform: rotate(90deg);   
     }
+    .pages-module .pages-module-label {
+        position: initial;
+        font-weight: 500;
+        padding-right: 5px;
+    }
 
 
     .toolbar select {
@@ -84,10 +94,17 @@
         box-shadow: none; 
         border-radius: none; 
     }
-    .pages .action {
+    .toolbar .pages-module {
+        margin-bottom: 0;
+    }
+
+    .pages-module .action {
         border: none;
     }
 
+    .reviews-wrapper {
+        margin-bottom: 50px;
+    }
     .review__wrapper {
     	display: flex;
     	align-items: center;
