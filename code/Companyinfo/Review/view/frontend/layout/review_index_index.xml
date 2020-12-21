@@ -2,6 +2,7 @@
 <page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" layout="2columns-left" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
 <head>
 	<title>Reviews</title>
+	<css src="Companyinfo_Review::css/content.css" after="-" />
 </head>
 <body>
 	<referenceBlock name="wishlist_sidebar" remove="true" />
@@ -32,7 +33,6 @@
 
 	<referenceContainer name="companyinfo_review_label_content_container">
 		<block name="label_reviews" template="Companyinfo_Review::labelReviews.phtml" />
-		<!-- <block class="Magento\Checkout\Block\Cart\ValidationMessages" name="checkout.cart.validationmessages" after="label_reviews" cacheable="false"/> -->
 	</referenceContainer>
 
 	<referenceContainer name="page.messages">

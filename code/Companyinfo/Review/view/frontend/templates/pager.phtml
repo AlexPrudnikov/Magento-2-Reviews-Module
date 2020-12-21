@@ -13,7 +13,7 @@
 <?php if ($block->getCollection()->getSize()) : ?>
 
     <?php if ($block->getUseContainer()) : ?>
-    <div class="pager pager-module">
+    <div class="pager">
     <?php endif ?>
 
         <?php if ($block->getShowAmounts()) : ?>
@@ -31,8 +31,8 @@
         <?php endif ?>
 
         <?php if ($block->getLastPageNum()>1) : ?>
-        <div class="pages pages-module">
-            <strong class="label pages-label pages-module-label" id="paging-label"><?= $block->escapeHtml(__('PAGE: ')) ?></strong>
+        <div class="pages">
+            <strong class="label pages-label" id="paging-label"><?= $block->escapeHtml(__('PAGE: ')) ?></strong>
             <ul class="items pages-items" aria-labelledby="paging-label">
             <?php if (!$block->isFirstPage()) : ?>
                 <li class="item pages-item-previous">
