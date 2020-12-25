@@ -63,6 +63,30 @@
                     </item>
                 </argument>
             </action>
+            <action name="status">
+                <argument name="data" xsi:type="array">
+                    <item name="config" xsi:type="array">
+                        <item name="type" xsi:type="string">status</item>
+                        <item name="label" xsi:type="string" translate="true">Change status</item>
+                    </item>
+                </argument>
+                <argument name="actions" xsi:type="array">
+                    <item name="0" xsi:type="array">
+                        <item name="type" xsi:type="string">enable</item>
+                        <item name="label" xsi:type="string" translate="true">Enable</item>
+                        <item name="url" xsi:type="url" path="review/review/massstatus">
+                            <param name="status">1</param>
+                        </item>
+                    </item>
+                    <item name="1" xsi:type="array">
+                        <item name="type" xsi:type="string">disable</item>
+                        <item name="label" xsi:type="string" translate="true">Disable</item>
+                        <item name="url" xsi:type="url" path="review/review/massstatus">
+                            <param name="status">0</param>
+                        </item>
+                    </item>
+                </argument>
+            </action>
         </massaction>
         <paging name="listing_paging">
             <argument name="data" xsi:type="array">
@@ -124,6 +148,19 @@
                </item>
            </argument>
        </column>
+       <column name="status">
+            <argument name="data" xsi:type="array">
+                <item name="options" xsi:type="object">Companyinfo\Review\Model\Status</item><item name="config" xsi:type="array">
+                    <item name="sortOrder" xsi:type="number">5</item>
+                    <item name="filter" xsi:type="string">select</item> <item name="label" translate="true" xsi:type="string">Status</item>
+                    <item name="component" xsi:type="string">Companyinfo_Review/js/grid/columns/select</item>
+                    <item name="dataType" xsi:type="string">select</item>
+                    <item name="editor" xsi:type="array">
+                        <item name="editorType" xsi:type="string">select</item>
+                    </item>
+                </item>
+            </argument>
+       </column>
        <column name="create_at" class="Magento\Ui\Component\Listing\Columns\Date" >
            <argument name="data" xsi:type="array">
                <item name="config" xsi:type="array">
@@ -132,7 +169,7 @@
                    <item name="dataType" xsi:type="string">date</item>
                    <item name="label" xsi:type="string" translate="true">Created At</item>
                    <item name="sortable" xsi:type="boolean">true</item>
-                   <item name="sortOrder" xsi:type="number">5</item>
+                   <item name="sortOrder" xsi:type="number">6</item>
                </item>
            </argument>
        </column>
@@ -144,7 +181,7 @@
                    <item name="dataType" xsi:type="string">date</item>
                    <item name="label" xsi:type="string" translate="true">Updated At</item>
                    <item name="sortable" xsi:type="boolean">true</item>
-                   <item name="sortOrder" xsi:type="number">6</item>
+                   <item name="sortOrder" xsi:type="number">7</item>
                </item>
            </argument>
        </column>

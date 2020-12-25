@@ -45,7 +45,7 @@ define([
         prepareMessageForHtml: function (message) {
             setTimeout(function() {
                 $(".messages").hide('blind', {}, 500)
-            }, 3000);
+            }, 9000);
             return escaper.escapeHtml(message, this.allowedTags);
         }
         

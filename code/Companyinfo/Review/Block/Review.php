@@ -88,7 +88,7 @@ class Review extends Template
         $pageSize = ($this->getRequest()->getParam('limit')) ? $this->getRequest( 
         )->getParam('limit') : 5;
 
-		$collection = $this->collectionFactory->create();
+		$collection = $this->collectionFactory->create()->addFieldToFilter('status', ['in' => [1]]);
 		$customer_entity_name = $this->resource->getTableName('customer_entity');
 
 		$collection->getSelect()->join(array('customer_entity' => $customer_entity_name),

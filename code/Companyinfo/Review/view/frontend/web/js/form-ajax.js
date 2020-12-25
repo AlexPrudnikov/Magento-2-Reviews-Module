@@ -43,7 +43,7 @@ define(['jquery',
 
   function successMessage () {
     setTimeout(function (){
-      var msg = $.mage.__('Review has been added.');
+      var msg = $.mage.__('Thank you for your review, it will be published after being checked by a moderator!.');
         customerData.set('messages', {
           messages: [{
             type: 'success',
