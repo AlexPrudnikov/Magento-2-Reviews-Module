@@ -2,6 +2,8 @@
 
 namespace Companyinfo\Review\Helper;
 
+use Magento\Store\Model\ScopeInterface;
+
 /**
  * 
  */
@@ -21,6 +23,8 @@ class Data extends \Magento\Framework\App\Helper\AbstractHelper
      * @var \Magento\Customer\Model\Session
      */
 	protected $_customerSession;
+
+	const XML_PATH = 'review/fields_masks/';
 
 	 /**
      * @param \Magento\Framework\App\Helper\Context $context
@@ -75,5 +79,10 @@ class Data extends \Magento\Framework\App\Helper\AbstractHelper
 	public function getConvertDate($date)
 	{
 		return $this->_timezone->date(new \DateTime($date))->format('d/m/y');
+	}
+
+	public function getConfigData($field)
+	{
+		return $this->scopeConfig->getValue(self::XML_PATH . $field, ScopeInterface::SCOPE_STORE);
 	}
 }

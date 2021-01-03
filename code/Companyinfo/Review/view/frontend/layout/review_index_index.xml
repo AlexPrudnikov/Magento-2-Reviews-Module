@@ -2,6 +2,8 @@
 <page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" layout="2columns-left" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
 <head>
 	<title>Reviews</title>
+	<meta name="keywords" content="" />
+	<meta name="description" content="" />
 	<css src="Companyinfo_Review::css/content.css" after="-" />
 </head>
 <body>
