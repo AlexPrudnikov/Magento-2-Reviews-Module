@@ -23,6 +23,7 @@
                        label="Companyinfo Review Reviews"
                        htmlTag="div"
                        htmlClass="reviews-wrapper"
+                       htmlId="reviewList"
         />
 	</referenceContainer>
 	<referenceContainer name="content.bottom">

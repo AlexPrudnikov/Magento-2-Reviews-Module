@@ -8,6 +8,7 @@ use Magento\Backend\App\Action\Context;
 use Magento\Ui\Component\MassAction\Filter;
 use Companyinfo\Review\Model\ReviewFactory;
 use Companyinfo\Review\Model\ResourceModel\Review\CollectionFactory;
+use Magento\Framework\Event\ManagerInterface;
  
 class MassStatus extends \Magento\Backend\App\Action
 {
@@ -31,6 +32,12 @@ class MassStatus extends \Magento\Backend\App\Action
      * @var TransactionFactory
      */
     protected $_transactionFactory;
+
+
+    /**
+    * @var ManagerInterface
+    */
+    protected $_eventManager;
  
     /**
      * @param Context           $context
@@ -44,13 +51,14 @@ class MassStatus extends \Magento\Backend\App\Action
         Filter $filter,
         ReviewFactory $modelFactory,
         TransactionFactory $transactionFactory,
-        CollectionFactory $collectionFactory
+        CollectionFactory $collectionFactory,
+        ManagerInterface $eventManager
     ) {
- 
         $this->_filter = $filter;
         $this->_modelFactory = $modelFactory;
         $this->_collectionFactory = $collectionFactory;
         $this->_transactionFactory = $transactionFactory;
+        $this->_eventManager = $eventManager;
         parent::__construct($context);
     }
  
@@ -62,6 +70,8 @@ class MassStatus extends \Magento\Backend\App\Action
     	$status = $this->getRequest()->getParam('status');
         $collection = $this->_filter->getCollection($this->_collectionFactory->create());
 
+        $this->_eventManager->dispatch('companyinfo_review_save_commit_after', ['collection' => $collection]);
+        
         $transaction = $this->_transactionFactory->create();
         foreach ($collection as $item) {
             $changeStatus = $this->_modelFactory->create()->load($item->getId());

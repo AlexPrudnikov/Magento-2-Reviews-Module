@@ -42,13 +42,17 @@
 <script type="text/x-magento-init">
    {
        "#form_id": {
-           "formAjax": { "id": "<?php echo $block->getCustomerId(); ?>",
-           				       "url": "<?php echo $this->getUrl('*/*/index'); ?>"
-           			      }
+           "formAjax": {
+           				       "url": "<?php echo $this->getUrl('*/*/index'); ?>",
+                         "action": "<?php echo $this->getFormAction(); ?>"
+           			       }
        },
 
        ".hide-modal": {
-            "hideModal" : { "event": "click" }
-     }
+            "hideModal" : {
+                            "event": "click",
+                            "action": "<?php echo $this->getFormAction(); ?>"
+                          }
+        }
    }
 </script>

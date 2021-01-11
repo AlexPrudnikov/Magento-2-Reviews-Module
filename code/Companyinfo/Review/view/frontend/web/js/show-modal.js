@@ -4,6 +4,9 @@ define(['jquery'], function($){
 		    event.preventDefault();
 		    $('.modal__wrapper').show();
 		    $('.input-text').focus();
+		    
+		    let form = $('.modal__wrapper').find('#form_id');
+		    form.find('.submit.primary').prop('disabled', false);
     	});
     }
 });

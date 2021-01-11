@@ -1,5 +1,5 @@
 <?php $_reviews = $block->getAllReviews(); ?>
-<div class="lable-wrapper orders-history" id="reviewList">
+<div class="lable-wrapper orders-history">
 	<?php if($_reviews && count($_reviews )): ?>
 			<?php foreach($_reviews as $_review): ?>
 				<div class="review__wrapper">
@@ -8,8 +8,19 @@
 						<p class="review__date"><?php echo $block->getConvertDate($_review->getData('create_at')) ?></p>
 					</div>
 					<div class="review__content">
-						<p class="reivew__intro"><?php echo $_review->getData('review') ?></p>
+						<p id="<?php echo $_review->getData('id'); ?>" class="reivew__intro"><?php echo $_review->getData('review') ?></p>
 					</div>
+					<?php if($block->usersReview($_review->getData('customer_id'))): ?>
+						<div class="review__wrapper-btn">
+							<button class="review__btn" type="submit"></button>
+						</div>
+						<div class="review__wrapper-menu">
+							<div class="review__menu-list">
+								<a id="edit" class="review__menu-list-item-btn-edit" href="<?php echo $this->getEditAction($_review->getData('id')); ?>">Edit</a>
+								<a id="delete" class="review__menu-list-item-btn-delete" href="<?php echo $this->getDeleteAction($_review->getData('id')); ?>">Delete</a>
+							</div>
+						</div>
+					<?php endif ?>
 				</div>
 			<?php endforeach; ?>
 		 <?php if ($block->getPagerHtml()): ?>
@@ -23,6 +34,22 @@
    {
        ".pager": {
            "pagination": { "url": "<?php echo $this->getUrl('*/*/index'); ?>" }
-       }
+       },
+
+       "#reviewList": {
+       		"deleteAjax": { 
+       						"event": "click",
+       						"url": "<?php echo $this->getUrl('*/*/index'); ?>"
+       					  },
+
+       		"showUserMenu": { 
+       						   "event": "click"
+       						}, 
+
+       	    "showEditForm": {	
+       	    					"event": "click",
+       							"url": "<?php echo $this->getUrl('*/*/index'); ?>"
+       						}
+   	   }
    }
 </script>

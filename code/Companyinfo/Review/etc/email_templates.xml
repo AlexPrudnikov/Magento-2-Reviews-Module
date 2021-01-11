@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Email:etc/email_templates.xsd">
+<template id="email_template_add_new_review"
+		  label="This is email" 
+		  file="email_template_add_new_review.html" 
+		  type="html"
+		  module="Companyinfo_Review"
+		  area="frontend"/>
+
+<template id="email_template_edit_review"
+		  label="This is email" 
+		  file="email_template_edit_review.html" 
+		  type="html"
+		  module="Companyinfo_Review"
+		  area="frontend"/>
+
+<template id="email_template_change_status_review"
+		  label="This is email" 
+		  file="email_template_change_status_review.html" 
+		  type="html"
+		  module="Companyinfo_Review"
+		  area="frontend"/>
+</config>
+

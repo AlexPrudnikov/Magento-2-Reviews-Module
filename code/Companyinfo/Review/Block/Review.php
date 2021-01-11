@@ -113,6 +113,13 @@ class Review extends Template
         return $review;
     }
 
+    public function getRequestParam($param)
+    {
+        $request = $this->getRequest();
+        $result = $request->getParam($param) ? $request->getParam($param) : 1;
+        return $result;
+    }
+
  	/**
     * Convert Date
     * @param string $data
@@ -122,5 +129,35 @@ class Review extends Template
 	{
 		return $this->_helper->getConvertDate($date);
 	}
+
+    /**
+    * Convert Date
+    * @param string $data
+    * @return bool
+    */
+    public function usersReview($customerId)
+    {
+        return $this->_helper->isLoggedIn() && $this->_helper->getCustomerId() === $customerId;
+    }
+
+    /**
+    * Get Url Action Edit
+    * @return string
+    */
+    public function getEditAction($id)
+    {
+        $page = $this->getRequestParam('p');
+        return $this->getUrl("review/index/edit?id=${id}&p=${page}", ['_secure' => true]);
+    }
+
+    /**
+    * Get Url Action Delete
+    * @return string
+    */
+    public function getDeleteAction($id)
+    {
+        $page = $this->getRequestParam('p');
+        return $this->getUrl("review/index/delete?id=${id}&p=${page}", ['_secure' => true]);
+    }
 
 }

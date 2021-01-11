@@ -6,17 +6,18 @@ define(['jquery',
        return function(data) {
           $("#form_id").submit(function(){
           var value = $("textarea[name='review']").val();
+          var idReview = parseInt($(this).attr('action').split('=')[1]);
 
           if($(this).validation().valid()) {
              $.ajax({
               url: $(this).attr('action'),
-              data: {review:value, id:data.id},
+              data: {review:value, idReview: idReview},
               type: "POST",
               showLoader: true,
               cache: false,
               success: function(response){
-                  updateTable(data.url);
-                  successMessage();
+                  updateTable(data.url, data.action, response.page);
+                  successMessage(response.message);
                  }
              });
           }
@@ -24,7 +25,7 @@ define(['jquery',
         });
     }
 
-    function updateTable(url, pageNumber = 1) {
+    function updateTable(url, action, pageNumber = 1) {
     let select = document.querySelector('#limiter');
     let pageLimit = select ? select.options[select.selectedIndex].text : 5;
 
@@ -32,18 +33,20 @@ define(['jquery',
       type:"GET", 
       url: `${url}?limit=${pageLimit}&p=${pageNumber}`,
       showLoader: true,
-      success: function(data) {
-        $("#reviewList").html(data);
+      success: function(response) {
+        $("#reviewList").html(response);
         $('.pager').first().trigger('contentUpdated');
         $('.modal__wrapper').hide();
         $('#form_id')[0].reset();
+
+        resetForm(action);
       }
     });
   }
 
-  function successMessage () {
+  function successMessage (message) {
     setTimeout(function (){
-      var msg = $.mage.__('Thank you for your review, it will be published after being checked by a moderator!.');
+      var msg = $.mage.__(message);
         customerData.set('messages', {
           messages: [{
             type: 'success',
@@ -52,4 +55,11 @@ define(['jquery',
       });    
     }, 4000);
   }
+
+  function resetForm(action) {
+    let form = $('.modal__wrapper').find('#form_id');
+    form.attr('action', action);
+    form.find('.submit.primary').html('Submit');
+  }
+
 });
