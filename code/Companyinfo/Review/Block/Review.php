@@ -91,8 +91,8 @@ class Review extends Template
 		$collection = $this->collectionFactory->create()->addFieldToFilter('status', ['in' => [1]]);
 		$customer_entity_name = $this->resource->getTableName('customer_entity');
 
-		$collection->getSelect()->join(array('customer_entity' => $customer_entity_name),
-											 'main_table.customer_id = customer_entity.entity_id');
+		$collection->getSelect()->join(['customer_entity' => $customer_entity_name],
+									   'main_table.customer_id = customer_entity.entity_id');
 		$collection->getSelect()->order('main_table.create_at DESC');
 
 		$collection->setPageSize($pageSize);
@@ -108,6 +108,11 @@ class Review extends Template
     {
         $id = (int)$this->getRequest()->getParam('id');
         $collection = $this->collectionFactory->create();
+        $customer_entity_name = $this->resource->getTableName('customer_entity');
+
+        $collection->getSelect()->join(['customer_entity' => $customer_entity_name],
+                                       'main_table.customer_id = customer_entity.entity_id');
+
         $review = $collection->getItemById($id);
         return $review;
     }
