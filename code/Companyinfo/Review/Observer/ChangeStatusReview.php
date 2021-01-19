@@ -76,7 +76,6 @@ class ChangeStatusReview implements \Magento\Framework\Event\ObserverInterface
 				      'review' => $item->getData('review')
 				 	];            
 
-			$this->logger->debug($email);
 
             $this->email->sendEmail($email, ['data' => new DataObject($data)], $template);
         }
