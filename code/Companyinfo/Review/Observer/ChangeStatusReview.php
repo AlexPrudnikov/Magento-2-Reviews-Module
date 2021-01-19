@@ -69,8 +69,7 @@ class ChangeStatusReview implements \Magento\Framework\Event\ObserverInterface
 	{
 		$template = $this->config->emailTemplateChange();
 		foreach ($collection as $item) {
-            //$email = $item->getData('email');
-            $email = 'Ra.Residentadvisor@gmail.com';
+                $email = $item->getData('email');
 			$data = [
 			     	  'name' => $item->getData('firstname'),
 				 	  'email' => $item->getData('email'),
