@@ -30,6 +30,11 @@ class Edit extends \Magento\Framework\App\Action\Action
     *@var JsonFactory
     */
     protected $jsonResultFactory;
+
+    /**
+    * @var ConfigInterface
+    */
+    protected $config;
  
     /**
      * @param Context $context
@@ -37,6 +42,7 @@ class Edit extends \Magento\Framework\App\Action\Action
      * @param Email $email
      * @param Data $data
      * @param DataObject $dataObject
+     * @param ConfigInterface $config
      * @param ReviewFactory $modelFactory
      */
     public function __construct(
@@ -45,6 +51,7 @@ class Edit extends \Magento\Framework\App\Action\Action
         \Companyinfo\Review\Helper\Email $email,
         \Companyinfo\Review\Helper\Data $data,
         \Magento\Framework\DataObject $dataObject,
+        \Companyinfo\Review\Model\Config\ConfigInterface $config,
         ReviewFactory $modelFactory
     ) {
     	parent::__construct($context);
@@ -52,6 +59,7 @@ class Edit extends \Magento\Framework\App\Action\Action
         $this->email = $email;
         $this->data = $data;
         $this->dataObject = $dataObject;
+        $this->config = $config;
         $this->_modelFactory = $modelFactory;
     }
 
@@ -88,8 +96,8 @@ class Edit extends \Magento\Framework\App\Action\Action
     private function sendEmail($variables)
     {
         $this->dataObject->addData($variables);
-        $addTo = $this->data->emailRecipient(); 
-        $template = 'email_template_edit_review';
+        $addTo = $this->config->emailRecipient(); 
+        $template = $this->config->emailTemplateEdit();
         $this->email->sendEmail($addTo, ['data' => $this->dataObject], $template);  
     }
 }

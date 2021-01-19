@@ -34,8 +34,6 @@ class Data extends \Magento\Framework\App\Helper\AbstractHelper
 
     private $logger;
 
-	const XML_PATH = 'review/fields_masks/';
-
 	 /**
      * @param \Magento\Framework\App\Helper\Context $context
      * @param \Magento\Customer\Model\Session $customerSession
@@ -96,11 +94,6 @@ class Data extends \Magento\Framework\App\Helper\AbstractHelper
 	public function getConvertDate($date)
 	{
 		return $this->_timezone->date(new \DateTime($date))->format('d/m/y');
-	}
-
-	public function getConfigData($field)
-	{
-		return $this->scopeConfig->getValue(self::XML_PATH . $field, ScopeInterface::SCOPE_STORE);
 	}
 
 	/**

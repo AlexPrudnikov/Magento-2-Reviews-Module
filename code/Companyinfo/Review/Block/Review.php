@@ -107,9 +107,8 @@ class Review extends Template
     public function getReview()
     {
         $id = (int)$this->getRequest()->getParam('id');
-        $collection = $this->getAllReviews();
+        $collection = $this->collectionFactory->create();
         $review = $collection->getItemById($id);
-
         return $review;
     }
 

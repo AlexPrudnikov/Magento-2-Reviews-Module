@@ -23,6 +23,11 @@ class ChangeStatusReview implements \Magento\Framework\Event\ObserverInterface
      */
 	protected $email;
 
+	/**
+    * @var ConfigInterface
+    */
+	protected $config;
+
     protected $logger;
 
 	/**
@@ -36,11 +41,13 @@ class ChangeStatusReview implements \Magento\Framework\Event\ObserverInterface
 					ReviewFactory $modelFactory,
 					\Magento\Framework\App\ResourceConnection $resource,
 					\Companyinfo\Review\Helper\Email $email,
+					\Companyinfo\Review\Model\Config\ConfigInterface $config,
 					array $data	= [])
 	{           
 					$this->_modelFactory = $modelFactory;
 					$this->resource = $resource;
 				    $this->email = $email;
+				    $this->config = $config;
 					$this->logger = $context->getLogger();
 	}
 
@@ -50,7 +57,7 @@ class ChangeStatusReview implements \Magento\Framework\Event\ObserverInterface
 		$customer_entity_name = $this->resource->getTableName('customer_entity');
 
 		$collection->getSelect()->join(['customer_entity' => $customer_entity_name],
-											 'main_table.customer_id = customer_entity.entity_id');
+									    'main_table.customer_id = customer_entity.entity_id');
 		$collection->getSelect()->order('main_table.create_at DESC');
 
 		$this->sendEmail($collection);
@@ -60,10 +67,10 @@ class ChangeStatusReview implements \Magento\Framework\Event\ObserverInterface
 
 	private function sendEmail($collection) 
 	{
-		$template = 'email_template_change_status_review';
+		$template = $this->config->emailTemplateChange();
 		foreach ($collection as $item) {
-            $email = $item->getData('email');
-            //$email = 'Ra.Residentadvisor@gmail.com';
+            //$email = $item->getData('email');
+            $email = 'Ra.Residentadvisor@gmail.com';
 			$data = [
 			     	  'name' => $item->getData('firstname'),
 				 	  'email' => $item->getData('email'),

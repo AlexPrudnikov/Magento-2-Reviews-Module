@@ -17,7 +17,7 @@ class Review extends \Magento\Framework\App\Action\Action
 	/**
      * @var Data 
      */
-	protected $data;
+	protected $helper;
 
 	/**
      * @var DataObject 
@@ -29,7 +29,10 @@ class Review extends \Magento\Framework\App\Action\Action
     */
     protected $jsonResultFactory;
 
-    protected $logger;
+    /**
+    * @var ConfigInterface
+    */
+	protected $config;
 
 	/**
      * @param Context $context
@@ -43,23 +46,25 @@ class Review extends \Magento\Framework\App\Action\Action
 								\Companyinfo\Review\Model\ReviewFactory $reviewFactory,
 								\Magento\Framework\Controller\Result\JsonFactory $jsonResultFactory,
 								\Companyinfo\Review\Helper\Email $email,
-								\Companyinfo\Review\Helper\Data $data,
-								\Magento\Framework\DataObject $dataObject
+								\Companyinfo\Review\Helper\Data $helper,
+								\Magento\Framework\DataObject $dataObject,
+								\Companyinfo\Review\Model\Config\ConfigInterface $config
 								)
 	{
 		parent::__construct($context);
 		$this->reviewFactory = $reviewFactory;
 		$this->jsonResultFactory = $jsonResultFactory;
 		$this->email = $email;
-		$this->data = $data;
+		$this->helper = $helper;
 		$this->dataObject = $dataObject;
+		$this->config = $config;
 	}
 
 	public function execute()
 	{
 		$request = $this->getRequest();
 
-		$idUser = $this->data->getCustomerId();
+		$idUser = $this->helper->getCustomerId();
 		$review = $request->getParam('review');
 		$modelReview = $this->reviewFactory->Create();
 
@@ -68,8 +73,8 @@ class Review extends \Magento\Framework\App\Action\Action
 		$modelReview->save();
 
 		$variables = [
-					  'name' => $this->data->getUserName(),
-					  'email' => $this->data->getUserEmail(),
+					  'name' => $this->helper->getUserName(),
+					  'email' => $this->helper->getUserEmail(),
 					  'review' => $review
 					 ];
 
@@ -85,8 +90,8 @@ class Review extends \Magento\Framework\App\Action\Action
 	private function sendEmail($variables)
 	{
 		$this->dataObject->addData($variables);
-		$addTo = $this->data->emailRecipient();	
-		$template = 'email_template_add_new_review';
+		$addTo = $this->config->emailRecipient();	
+		$template = $this->config->emailTemplateAdd();
 		$this->email->sendEmail($addTo, ['data' => $this->dataObject], $template);	
 	}
 }

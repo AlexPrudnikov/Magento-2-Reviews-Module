@@ -5,23 +5,23 @@ namespace Companyinfo\Review\Controller\Index;
 class Index	extends	\Magento\Framework\App\Action\Action
 {
 	/**	
-	* @var \Magento\Framework\View\Result\PageFactory
+	* @var PageFactory
 	*/
 	protected $resultPageFactory;
 
 	/**
-    * @var \Companyinfo\Review\Helper\Data $helper
+    * @var ConfigInterface
     */
-	protected $helper;
+	protected $config;
 
 	public function __construct(\Magento\Framework\App\Action\Context $context,
 								\Magento\Framework\View\Result\PageFactory $resultPageFactory,
-								\Companyinfo\Review\Helper\Data $helper
+								\Companyinfo\Review\Model\Config\ConfigInterface $config
 								)
 	{
 		parent::__construct($context);
 		$this->resultPageFactory = $resultPageFactory;
-		$this->helper = $helper;
+		$this->config = $config;
 	}
 
 	/*
@@ -36,9 +36,9 @@ class Index	extends	\Magento\Framework\App\Action\Action
 		if(!$page)
 		{
 			$resultPage = $this->resultPageFactory->create();
-			$resultPage->getConfig()->getTitle()->set($this->helper->getConfigData('meta_title'));
-			$resultPage->getConfig()->setDescription($this->helper->getConfigData('meta_description'));
-			$resultPage->getConfig()->setKeywords($this->helper->getConfigData('meta_keyword'));
+			$resultPage->getConfig()->getTitle()->set($this->config->getTitle());
+			$resultPage->getConfig()->setDescription($this->config->getDescription());
+			$resultPage->getConfig()->setKeywords($this->config->getKeywords());
 			return $resultPage;	
 		} else 
 		{

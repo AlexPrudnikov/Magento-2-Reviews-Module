@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Store:etc/config.xsd">
+    <default>
+        <review>
+            <contact>
+                <enabled>1</enabled>
+            </contact>
+            <email>
+                <recipient_email>
+                    <![CDATA[hello@example.com]]>
+                </recipient_email>
+                <template_add_new_review>email_template_add_new_review</template_add_new_review>
+                <template_adit_review>email_template_edit_review</template_adit_review>
+                <template_change_status_review>email_template_change_status_review</template_change_status_review>
+            </email>
+        </review>
+    </default>
+</config>
