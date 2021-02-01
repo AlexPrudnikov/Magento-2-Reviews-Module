@@ -1,9 +1,16 @@
 <?php
 
 namespace Companyinfo\Review\Controller\Index;
- 
+
 use Companyinfo\Review\Model\ReviewFactory;
- 
+use Companyinfo\Review\Api\ReviewRepositoryInterface;
+use Companyinfo\Review\Model\Config\ConfigInterface;
+use Companyinfo\Review\Helper\Data;
+use Companyinfo\Review\Helper\Email;
+use Magento\Framework\DataObject;
+use Magento\Framework\Controller\Result\JsonFactory;
+use Magento\Framework\App\Action\Context;
+
 class Edit extends \Magento\Framework\App\Action\Action
 {
     /**
@@ -12,21 +19,26 @@ class Edit extends \Magento\Framework\App\Action\Action
     protected $_modelFactory;
 
     /**
-     * @var Email 
+     * @var ReviewRepositoryInterface
+     */
+    protected $reviewRepositoryInterface;
+
+    /**
+     * @var Email
      */
     protected $email;
 
     /**
-     * @var Data 
+     * @var Data
      */
     protected $data;
 
     /**
-     * @var DataObject 
+     * @var DataObject
      */
     protected $dataObject;
 
-    /** 
+    /**
     *@var JsonFactory
     */
     protected $jsonResultFactory;
@@ -35,8 +47,9 @@ class Edit extends \Magento\Framework\App\Action\Action
     * @var ConfigInterface
     */
     protected $config;
- 
+
     /**
+     * Edit constructor.
      * @param Context $context
      * @param JsonFactory $jsonResultFactory
      * @param Email $email
@@ -44,15 +57,17 @@ class Edit extends \Magento\Framework\App\Action\Action
      * @param DataObject $dataObject
      * @param ConfigInterface $config
      * @param ReviewFactory $modelFactory
+     * @param ReviewRepositoryInterface $reviewRepositoryInterface
      */
     public function __construct(
-        \Magento\Framework\App\Action\Context $context,
-        \Magento\Framework\Controller\Result\JsonFactory $jsonResultFactory,
-        \Companyinfo\Review\Helper\Email $email,
-        \Companyinfo\Review\Helper\Data $data,
-        \Magento\Framework\DataObject $dataObject,
-        \Companyinfo\Review\Model\Config\ConfigInterface $config,
-        ReviewFactory $modelFactory
+        Context $context,
+        JsonFactory $jsonResultFactory,
+        Email $email,
+        Data $data,
+        DataObject $dataObject,
+        ConfigInterface $config,
+        ReviewFactory $modelFactory,
+        ReviewRepositoryInterface $reviewRepositoryInterface
     ) {
     	parent::__construct($context);
         $this->jsonResultFactory = $jsonResultFactory;
@@ -61,26 +76,24 @@ class Edit extends \Magento\Framework\App\Action\Action
         $this->dataObject = $dataObject;
         $this->config = $config;
         $this->_modelFactory = $modelFactory;
+        $this->reviewRepositoryInterface = $reviewRepositoryInterface;
     }
 
     public function execute()
     {
-    	$status = 0;
     	$request = $this->getRequest();
         $reviewId = (int) $request->getParam('idReview');
-		$editedReview= $request->getParam('review');
+		$editedReview = $request->getParam('review');
 
-		$reviewData = $this->_modelFactory->Create();
-		$review = $reviewData->load($reviewId);
-
-		$review->setStatus($status);
-		$review->setReview($editedReview);
-		$review->save();
+        $review = $this->reviewRepositoryInterface->get($reviewId);
+        $review->setStatus(0)
+               ->setReview($editedReview);
+        $this->reviewRepositoryInterface->save($review);
 
         $variables = [
                       'name' => $this->data->getUserName(),
                       'email' => $this->data->getUserEmail(),
-                      'review' => $review->getData('review')
+                      'review' => $review->getReview()
                      ];
 
         $this->sendEmail($variables);
@@ -93,11 +106,14 @@ class Edit extends \Magento\Framework\App\Action\Action
 		return $result;
     }
 
-    private function sendEmail($variables)
+    /**
+     * @param $variables
+     */
+    private function sendEmail($variables) : void
     {
         $this->dataObject->addData($variables);
-        $addTo = $this->config->emailRecipient(); 
+        $addTo = $this->config->emailRecipient();
         $template = $this->config->emailTemplateEdit();
-        $this->email->sendEmail($addTo, ['data' => $this->dataObject], $template);  
+        $this->email->sendEmail($addTo, ['data' => $this->dataObject], $template);
     }
 }

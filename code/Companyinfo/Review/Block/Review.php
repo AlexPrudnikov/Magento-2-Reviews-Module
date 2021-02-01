@@ -1,6 +1,7 @@
 <?php
 namespace Companyinfo\Review\Block;
 
+use Companyinfo\Review\Model\ResourceModel\Review\Collection;
 use	Magento\Framework\View\Element\Template;
 use Companyinfo\Review\Model\ReviewFactory;
 use Companyinfo\Review\Model\ResourceModel\Review\CollectionFactory;
@@ -48,7 +49,7 @@ class Review extends Template
 					$this->_helper = $helper;
 					parent::__construct($context, $data);
 	}
-	
+
 	protected function _prepareLayout()
     {
         parent::_prepareLayout();
@@ -85,7 +86,7 @@ class Review extends Template
 	public function getAllReviews()
 	{
 		$page = ($this->getRequest()->getParam('p')) ? $this->getRequest()->getParam('p') : 1;
-        $pageSize = ($this->getRequest()->getParam('limit')) ? $this->getRequest( 
+        $pageSize = ($this->getRequest()->getParam('limit')) ? $this->getRequest(
         )->getParam('limit') : 5;
 
 		$collection = $this->collectionFactory->create()->addFieldToFilter('status', ['in' => [1]]);
@@ -97,7 +98,7 @@ class Review extends Template
 
 		$collection->setPageSize($pageSize);
 		$collection->setCurPage($page);
-	
+
 		return $collection;
 	}
 
